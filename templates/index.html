@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<!-- banner section start -->
+<div class="banner_section layout_padding">
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      {% if asosiy %}
+        {% for x in asosiy %}
+        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-6">
+                <h1 class="banner_taital">{{ x.kichik_sarlavha }}</h1>
+                <p class="banner_text">{{ x.matn }}</p>
+                <div class="read_bt"><a href="#">Buy Now</a></div>
+              </div>
+              <div class="col-sm-6">
+                <div class="banner_img">
+                  {% if x.rasm %}
+                    <img src="{{ x.rasm.url }}" alt="Banner" />
+                  {% else %}
+                    <img src="{% static 'images/img1.png' %}" alt="Banner" />
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      {% else %}
+      <div class="carousel-item active">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-6">
+              <h1 class="banner_taital">Welcome to Sungla</h1>
+              <p class="banner_text">Discover our latest products and enjoy the best design for your store.</p>
+              <div class="read_bt"><a href="#">Buy Now</a></div>
+            </div>
+            <div class="col-sm-6">
+              <div class="banner_img">
+                <img src="{% static 'images/img1.png' %}">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- banner section end -->
+
+<!-- product section start -->
+<div class="product_section layout_padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1 class="product_taital">Our Products</h1>
+        <p class="product_text">incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
+      </div>
+    </div>
+    <div class="product_section_2 layout_padding">
+      <div class="row">
+        {% for x in mahsulot %}
+        <div class="col-lg-3 col-sm-6">
+          <div class="product_box">
+            <h4 class="bursh_text">{{ x.nomi }}</h4>
+            <p class="lorem_text">{{ x.sharhi }}</p>
+            {% if x.rasm %}
+            <img src="{{ x.rasm.url }}" class="image_1">
+            {% else %}
+            <img src="{% static 'images/img3.png' %}" class="image_1">
+            {% endif %}
+            <div class="btn_main">
+              <div class="buy_bt">
+                <ul>
+                  <li class="active"><a href="#">Buy Now</a></li>
+                  <li><a href="#">Buy Now</a></li>
+                </ul>
+              </div>
+              <h3 class="price_text">Price ${{ x.narxi }}</h3>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="seemore_bt"><a href="#">See More</a></div>
+    </div>
+  </div>
+</div>
+<!-- product section end -->
+
+<!-- about section start -->
+<div class="about_section layout_padding">
+  <div class="container">
+    <div class="about_section_main">
+      <div class="row">
+        {% for x in haqida %}
+        <div class="col-md-6">
+          <div class="about_taital_main">
+            <h1 class="about_taital">{{ x.sarlavha }}</h1>
+            <p class="about_text">{{ x.matn }}</p>
+            <div class="readmore_bt"><a href="#">Read More</a></div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div>{% if x.rasm %}<img src="{{ x.rasm.url }}" class="image_3">{% else %}<img src="{% static 'images/img2.png' %}" class="image_3">{% endif %}</div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+<!-- about section end -->
+
+{% endblock content %}
+
